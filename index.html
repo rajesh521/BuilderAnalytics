@@ -1,1 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Builder Analytics Tool</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #555;
+        }
+        .chart-container {
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Builder Analytics Tool</h1>
+        <div class="dashboard">
+            <div class="card">
+                <h2>Projects Overview</h2>
+                <canvas id="projectsChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Revenue</h2>
+                <canvas id="revenueChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>Customer Satisfaction</h2>
+                <canvas id="satisfactionChart"></canvas>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        // Projects Overview Chart
+        new Chart(document.getElementById('projectsChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Completed', 'In Progress', 'Planned'],
+                datasets: [{
+                    data: [30, 50, 20],
+                    backgroundColor: ['#36A2EB', '#FFCE56', '#FF6384']
+                }]
+            }
+        });
+
+        // Revenue Chart
+        new Chart(document.getElementById('revenueChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: '#4BC0C0'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Customer Satisfaction Chart
+        new Chart(document.getElementById('satisfactionChart'), {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Satisfaction Score',
+                    data: [4.5, 4.6, 4.7, 4.8, 4.7, 4.9],
+                    borderColor: '#FF9F40',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        max: 5
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
